@@ -1,0 +1,54 @@
+:root {
+  --bg-color: hsl(0, 0%, 100%);
+  --bg-color-light: hsl(0, 0%, 100%);
+  --text-color: black;
+  --font-size: 1.5rem;
+  --line-height: 2rem;
+  --font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --calculator-button-size: 60px;
+
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: var(--line-height);
+  font-weight: 400;
+  font-size: var(--font-size);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+body {
+  color: var(--text-color);
+  background-color: var(--bg-color);
+}
+
+#root {
+  height: 100%;
+  display: flex;
+  place-items: center;
+}
+
+input, button {
+  color: var(--text-color);
+  background-color: var(--bg-color-light);
+  font-size: var(--font-size);
+}
+
+input {
+  width: 100%;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: hsl(232, 11%, 15%);
+    --bg-color-light: hsl(233, 8%, 19%);
+    --text-color: white;
+  }
+}
