@@ -2,10 +2,11 @@
   --bg-color: hsl(0, 0%, 100%);
   --bg-color-light: hsl(0, 0%, 100%);
   --text-color: black;
-  --font-size: 1.5rem;
+  --font-size: 1.25rem;
   --line-height: 2rem;
   --font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   --calculator-button-size: 60px;
+  --screen-secondary-color: #969ba1;
 
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: var(--line-height);
@@ -32,7 +33,8 @@ body {
 #root {
   height: 100%;
   display: flex;
-  place-items: center;
+  justify-content: center;
+  align-items: center;
 }
 
 input, button {
@@ -47,8 +49,8 @@ input {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg-color: hsl(232, 11%, 15%);
-    --bg-color-light: hsl(233, 8%, 19%);
+    --bg-color: #26272F;
+    --bg-color-light: #3A3D47;
     --text-color: white;
   }
 }

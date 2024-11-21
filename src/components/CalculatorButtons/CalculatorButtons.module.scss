@@ -1,0 +1,11 @@
+.buttons {
+    display: grid;
+    gap: 1rem;
+    grid-template-rows: repeat(4, var(--calculator-button-size));
+}
+
+.button-row {
+    display: grid;
+    grid-template-columns: repeat(4,var(--calculator-button-size));
+    gap: 1rem;
+}

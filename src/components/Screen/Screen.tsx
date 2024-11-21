@@ -2,18 +2,20 @@ import { TextField, Input, TextFieldProps } from 'react-aria-components';
 import styles from './Screen.module.scss'
 
 interface ScreenProps extends TextFieldProps {
-    expression: string;
-    answer: number | null;
+    primaryValue: string;
+    secondaryValue: string;
 }
 
-const Screen = ({expression, answer}: ScreenProps) => {
+const Screen = ({primaryValue, secondaryValue}: ScreenProps) => {
     return (
         <section className={styles.screen}>
-            <TextField isReadOnly className={styles.answer}>
-                <Input aria-label='answer' value={answer?.toString()}/>
-            </TextField>
+            <div className={styles['secondary-value']}>
+            {secondaryValue !== "" && (
+                <span role="presentation">Ans = {secondaryValue}</span>
+            )}
+            </div>
             <TextField id="expression" isReadOnly className={styles.expression}>
-                <Input aria-label='expression' value={expression}/>
+                <Input aria-label='expression' value={primaryValue}/>
             </TextField>
         </section>
     )
