@@ -1,5 +1,5 @@
 import { TextField, Input, TextFieldProps } from 'react-aria-components';
-import styles from './Screen.module.scss'
+import styles from './Screen.module.scss';
 
 interface ScreenProps extends TextFieldProps {
     primaryValue: string;
@@ -9,12 +9,10 @@ interface ScreenProps extends TextFieldProps {
 const Screen = ({primaryValue, secondaryValue}: ScreenProps) => {
     return (
         <section className={styles.screen}>
-            <div className={styles['secondary-value']}>
-            {secondaryValue !== "" && (
-                <span role="presentation">Ans = {secondaryValue}</span>
-            )}
-            </div>
-            <TextField id="expression" isReadOnly className={styles.expression}>
+            <TextField id="secondaryValue" isReadOnly className={styles['secondary-value']}>
+                <Input aria-label='' value={secondaryValue}/>
+            </TextField>
+            <TextField id="primaryValue" isReadOnly className={styles['primary-value']}>
                 <Input aria-label='expression' value={primaryValue}/>
             </TextField>
         </section>

@@ -6,8 +6,9 @@ import CalculatorButtons from "../CalculatorButtons/CalculatorButtons";
 import { Operator } from "../../enums/Operator";
 
 const Calculator = () => {
-    const [answer, setAnswer] = useState<number | null>(null);
-    const [expression, setExpression] = useState('');
+    const [primaryValue, setPrimaryValue] = useState("");
+    const [secondaryValue, setSecondaryValue] = useState("");
+
     const parser = new Parser();
 
     const buttonActions: Record<string, (prevValue: string) => string | void> = {
@@ -21,37 +22,38 @@ const Calculator = () => {
         '7': (prevValue: string) => prevValue + '7',
         '8': (prevValue: string) => prevValue + '8',
         '9': (prevValue: string) => prevValue + '9',
-        [Operator.ADD]: () => handleOperatorClick('+'),
-        [Operator.SUBTRACT]: () => handleOperatorClick('-'),
-        [Operator.MULTIPLY]: () => handleOperatorClick('*'),
-        [Operator.DIVIDE]: () => handleOperatorClick('/'),
+        [Operator.ADD]: () => handleOperatorClick(' + '),
+        [Operator.SUBTRACT]: () => handleOperatorClick(' - '),
+        [Operator.MULTIPLY]: () => handleOperatorClick(' * '),
+        [Operator.DIVIDE]: () => handleOperatorClick(' / '),
         [Operator.EQUALS]: () => handleEqualsClick(),
         [Operator.CLEAR]: () => handleClearClick(),
-        [Operator.DECIMAL]: (prevValue: string) => prevValue + '.'
+        [Operator.DECIMAL]: () => handleOperatorClick('.'),
     }
 
     const handleEqualsClick = () => {
-        setAnswer(parser.evaluate(expression));
+        setSecondaryValue(formatExpression(primaryValue));
+        setPrimaryValue(parser.evaluate(primaryValue).toString());
     }
 
     const handleOperatorClick = (operator: string) => {
-        if (!expression || !parseInt(expression[expression.length - 1], 10)){
+        if (!primaryValue || !parseInt(primaryValue[primaryValue.length - 1], 10)){
             return;
         }
 
-        setExpression(expression + ' ' + operator + ' ');
+        setPrimaryValue(primaryValue + operator);
     }
 
     const handleClearClick = () => {
-        setExpression("");
-        setAnswer(null);
+        setPrimaryValue("");
+        setSecondaryValue("");
     }
 
     const handleButtonClick = (label: string) => {
-        const newExpression = buttonActions[label](expression);
+        const newExpression = buttonActions[label](primaryValue);
 
         if (typeof newExpression === 'string') {
-            setExpression(newExpression);
+            setPrimaryValue(newExpression);
         }
     }
 
@@ -63,7 +65,7 @@ const Calculator = () => {
 
     return (
         <div className={styles.calculator}>
-            <Screen primaryValue={formatExpression(expression)} secondaryValue={answer?.toString() ?? ""}></Screen>
+            <Screen primaryValue={formatExpression(primaryValue)} secondaryValue={secondaryValue}></Screen>
             <CalculatorButtons onButtonClick={handleButtonClick}></CalculatorButtons>
         </div>
     )

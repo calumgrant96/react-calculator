@@ -1,31 +1,28 @@
 .screen {
-    display: flex;
-    flex-direction: column;
-    position: relative;
     overflow-x: auto;
     border: 1px solid var(--screen-secondary-color);
     border-radius: 12px;
-    padding: 2rem .5rem 0;
+    padding: .5rem;
 }
 
-.expression > input {
-    text-align: right;
-    background: none;
-    border: none;
-    outline: none;
+.primary-value, .secondary-value {
+    display: flex;
+
+    input {
+        text-align: right;
+        background: none;
+        border: none;
+        outline: none;
+    }
 }
 
 .secondary-value {
-    display: flex;
-    align-items: center;
-    position: absolute;
-    top: 0;
-    right: .5rem;
     color: var(--screen-secondary-color);
     font-weight: normal;
     white-space: nowrap;
+    margin-bottom: 0.125rem;
 
-    span {
+    input {
         font-size: 0.75rem;
     }
 }
